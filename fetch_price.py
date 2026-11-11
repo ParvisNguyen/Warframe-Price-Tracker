@@ -1,17 +1,17 @@
 import requests
 import time
 import os
-import psycopg
+import pg8000.dbapi
 from dotenv import load_dotenv
 
 # Loads database settings from .env so password is not stored in code
 load_dotenv()
 
 # Connected to PostgreSQL database running in Docker
-conn = psycopg.connect(
+conn = pg8000.connect(
     host = os.getenv("DB_HOST"),
     port = os.getenv("DB_PORT"),
-    dbname = os.getenv ("DB_NAME"),
+    database= os.getenv ("DB_NAME"),
     user = os.getenv ("DB_USER"),
     password = os.getenv("DB_PASSWORD")
 )
